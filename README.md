@@ -1,6 +1,6 @@
 # Bingo Generator
 
-One day my girlfriend came up to me and asked "if I have a list of songs, can you make bingo cards?". The answer is this program.
+One day my girlfriend came up to me and asked "If I have a list of songs, can you make bingo cards?". The answer is this program.
 
 ## Please note
 
