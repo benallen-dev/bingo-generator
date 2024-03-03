@@ -1,4 +1,4 @@
-package main
+package bingo
 
 import (
 	"fmt"
@@ -16,6 +16,10 @@ func (c *Card) String() string {
 		output += song.String() + "\n"
 	}
 	return output
+}
+
+func (c *Card) OneLine() string {
+	return fmt.Sprintf("Card (wins at %d)", c.WinsAt())
 }
 
 func (c *Card) Display() string {

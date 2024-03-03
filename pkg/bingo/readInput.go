@@ -1,4 +1,4 @@
-package main
+package bingo
 
 import (
 	"bufio"
@@ -7,11 +7,10 @@ import (
 	"strings"
 )
 
-func readInput() (output [][]Song) {
+func readInput(assetPath string) (output [][]Song) {
 
-	// Read files from the assets folder
-	folder := "assets"
-	dirEntries, err := os.ReadDir(folder)
+	// Read files from the assets 
+	dirEntries, err := os.ReadDir(assetPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -22,7 +21,7 @@ func readInput() (output [][]Song) {
 	for idx, dirEntry := range dirEntries {
 
 		// Open the file
-		file, err := os.Open(folder + "/" + dirEntry.Name())
+		file, err := os.Open(assetPath + "/" + dirEntry.Name())
 		if err != nil {
 			log.Fatal(err)
 		}
