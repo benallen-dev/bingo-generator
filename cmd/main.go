@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/benallen-dev/bingo-generator/pkg/bingo"
+	"github.com/benallen-dev/bingo-generator/pkg/image"
 )
 
 // This isn't exacty the best thing I've ever written but oh well it works
@@ -29,5 +30,11 @@ func main() {
 	for roundIdx, round := range rounds {
 		fmt.Println("Round", roundIdx+1)
 		fmt.Print(round.Display())
+
+		// Draw the cards
+		for cardIdx, card := range round.WinningCards {
+			filename := fmt.Sprintf("winning-card-%d-%d.png", roundIdx+1, cardIdx+1)
+			image.DrawCard(card, filename)
+		}
 	}
 }
