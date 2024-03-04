@@ -14,10 +14,10 @@ const (
 )
 
 var WINNERS = [][]int{
-	{12, 15, 23, 25, 26, 27 },
-	{12, 15, 18, 21, 25, 26},
-	{12, 15, 18, 21, 25, 26},
-	{12, 15, 18, 21, 25, 26},
+	{12, 15, 23, 28, 29},
+	{17, 20, 25, 28, 29},
+	{15, 21, 24, 27, 28},
+	{14, 18, 26, 30, 31},
 }
 
 func main() {
@@ -35,6 +35,18 @@ func main() {
 
 	// Generate the images
 	fileName := "test-card.png"
-	image.DrawCard(testCard, fileName)
+	image.DrawCard(testCard, fileName, 1)
+
+	for roundNumber, round := range rounds {
+		for cardNumber, card := range round.WinningCards {
+			fileName := fmt.Sprintf("output/round-%d-%02d-win-%d.png", roundNumber+1, cardNumber+1, card.WinsAt())
+			image.DrawCard(card, fileName, roundNumber+1)
+		}
+
+		for cardNumber, card := range round.BackupCards {
+			fileName := fmt.Sprintf("output/round-%d-%02d-no-win-%d.png", roundNumber+1, cardNumber+6, card.WinsAt())
+			image.DrawCard(card, fileName, roundNumber+1)
+		}
+	}
 
 }

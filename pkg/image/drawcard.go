@@ -1,6 +1,7 @@
 package image
 
 import (
+	"strconv"
 	"image"
 	"image/color"
 	"image/png"
@@ -80,7 +81,7 @@ func renderText(img *image.RGBA, xPos int, yPos int, color color.RGBA, maxWidth 
 }
 
 // DrawCard draws a bingo card
-func DrawCard(card *bingo.Card, filename string) {
+func DrawCard(card *bingo.Card, filename string, roundNumber int) {
 
 	imageHeight := HEADER_HEIGHT + HEIGHT
 	imageWidth := WIDTH
@@ -96,7 +97,7 @@ func DrawCard(card *bingo.Card, filename string) {
 	}
 
 	// Draw the title
-	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "DELTA DS1 Muziekbingo                     Ronde X", 40)
+	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "DELTA DS1 Muziekbingo                     Ronde " + strconv.Itoa(roundNumber), 40)
 
 	// Horizontal lines
 	for i := range WIDTH {
@@ -136,17 +137,17 @@ func DrawCard(card *bingo.Card, filename string) {
 		renderText(img, xCenter-(artistWidth/2), yPosition+(fontSize+yPadding), TEXT_COLOR, BOUNDS[i].width-20, song.Artist, fontSize)
 
 		// get bounding box
-		b := BOUNDS[i]
+//		b := BOUNDS[i]
 
-		// draw bounding box for debugging
-		for x := b.x; x < b.x+b.width; x++ {
-			img.Set(x, b.y, color.RGBA{64, 64, 64, 255})
-			img.Set(x, b.y+b.height, color.RGBA{64, 64, 64, 255})
-		}
-		for y := b.y; y < b.y+b.height; y++ {
-			img.Set(b.x, y, color.RGBA{64, 64, 64, 255})
-			img.Set(b.x+b.width, y, color.RGBA{64, 64, 64, 255})
-		}
+		// // draw bounding box for debugging
+		// for x := b.x; x < b.x+b.width; x++ {
+		// 	img.Set(x, b.y, color.RGBA{64, 64, 64, 255})
+		// 	img.Set(x, b.y+b.height, color.RGBA{64, 64, 64, 255})
+		// }
+		// for y := b.y; y < b.y+b.height; y++ {
+		// 	img.Set(b.x, y, color.RGBA{64, 64, 64, 255})
+		// 	img.Set(b.x+b.width, y, color.RGBA{64, 64, 64, 255})
+		// }
 
 	}
 
