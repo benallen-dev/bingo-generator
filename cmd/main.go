@@ -10,11 +10,11 @@ import (
 // This isn't exacty the best thing I've ever written but oh well it works
 
 const (
-	CARDS_PER_ROUND int = 9
+	CARDS_PER_ROUND int = 50
 )
 
 var WINNERS = [][]int{
-	{12, 15, 18, 21, 25, 26},
+	{12, 15, 23, 25, 26, 27 },
 	{12, 15, 18, 21, 25, 26},
 	{12, 15, 18, 21, 25, 26},
 	{12, 15, 18, 21, 25, 26},
@@ -25,16 +25,16 @@ func main() {
 	fmt.Println()
 
 	// Generate the bingo cards
-	rounds := bingo.Generate(WINNERS, CARDS_PER_ROUND)
+	rounds := bingo.Generate("./assets", WINNERS, CARDS_PER_ROUND)
 
-	for roundIdx, round := range rounds {
-		fmt.Println("Round", roundIdx+1)
-		fmt.Print(round.Display())
-
-		// Draw the cards
-		for cardIdx, card := range round.WinningCards {
-			filename := fmt.Sprintf("winning-card-%d-%d.png", roundIdx+1, cardIdx+1)
-			image.DrawCard(card, filename)
-		}
+	for _, round := range rounds {
+		fmt.Println(round.Display())
 	}
+
+	testCard := rounds[0].WinningCards[0]
+
+	// Generate the images
+	fileName := "test-card.png"
+	image.DrawCard(testCard, fileName)
+
 }

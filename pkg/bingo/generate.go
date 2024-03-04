@@ -6,9 +6,9 @@ import (
 )
 
 // GenerateBingoCards generates bingo cards for each round of bingo
-func Generate(WINNERS [][]int, CARDS_PER_ROUND int) (output []Round) {
+func Generate(assetDir string, WINNERS [][]int, CARDS_PER_ROUND int) (output []Round) {
 
-	rounds := readInput("../assets")
+	rounds := readInput(assetDir)
 	output = make([]Round, len(rounds))
 
 	for roundIdx, round := range rounds {
