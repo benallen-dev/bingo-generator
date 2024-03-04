@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/benallen-dev/bingo-generator/pkg/bingo"
 	"github.com/benallen-dev/bingo-generator/pkg/image"
@@ -27,16 +28,13 @@ func main() {
 	// Generate the bingo cards
 	rounds := bingo.Generate("./assets", WINNERS, CARDS_PER_ROUND)
 
-	for _, round := range rounds {
-		fmt.Println(round.Display())
+	// Create output dir if it doesn't exist
+	err := os.Mkdir("output", 0755)
+	if err != nil {
+		fmt.Println("Error creating output directory:", err)
 	}
 
-	testCard := rounds[0].WinningCards[0]
-
 	// Generate the images
-	fileName := "test-card.png"
-	image.DrawCard(testCard, fileName, 1)
-
 	for roundNumber, round := range rounds {
 		for cardNumber, card := range round.WinningCards {
 			fileName := fmt.Sprintf("output/round-%d-%02d-win-%d.png", roundNumber+1, cardNumber+1, card.WinsAt())
