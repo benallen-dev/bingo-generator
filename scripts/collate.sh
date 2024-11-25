@@ -7,11 +7,11 @@ temp_dir="./temp"
 mkdir -p "$temp_dir"
 
 # Dimensions for A4 in pixels at 150 DPI
-a4_width=1240
-a4_height=1754
+a4_width=2480
+a4_height=3508
 
 # Effective content area with margins
-margin=80
+margin=160
 content_width=$((a4_width - 2 * margin))
 content_height=$((a4_height - 2 * margin))
 
@@ -35,7 +35,7 @@ for ((i=0; i<${#image_list[@]}; i+=2)); do
 done
 
 # Combine all pages into a single PDF
-magick -density 150 "$temp_dir/page_*.png" -quality 100 "$output_pdf"
+magick -density 300 "$temp_dir/page_*.png" -quality 100 "$output_pdf"
 
 # Cleanup
 rm -r "$temp_dir"
