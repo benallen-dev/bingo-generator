@@ -11,14 +11,14 @@ import (
 // This isn't exacty the best thing I've ever written but oh well it works
 
 const (
-	CARDS_PER_ROUND int = 50
+	CARDS_PER_ROUND int = 100
 )
 
 var WINNERS = [][]int{
-	{12, 15, 23, 28, 29},
-	{17, 20, 25, 28, 29},
-	{15, 21, 24, 27, 28},
-	{14, 18, 26, 30, 31},
+	{13, 17, 23, 28, 29},
+	{14, 17, 24, 27, 28},
+	{13, 19, 23, 25, 28},
+	{13, 19, 22, 25, 27},
 }
 
 func main() {

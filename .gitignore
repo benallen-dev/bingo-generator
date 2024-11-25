@@ -1,5 +1,7 @@
 tmp/
+output/
 output-old/
 
 /*.png
+*.pdf
 

@@ -97,7 +97,7 @@ func DrawCard(card *bingo.Card, filename string, roundNumber int) {
 	}
 
 	// Draw the title
-	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "DELTA DS1 Muziekbingo                     Ronde " + strconv.Itoa(roundNumber), 40)
+	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "DELTA DS1 & DS2 Muziekbingo            Ronde " + strconv.Itoa(roundNumber), 40)
 
 	// Horizontal lines
 	for i := range WIDTH {
