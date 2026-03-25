@@ -90,14 +90,14 @@ func DrawCard(card *bingo.Card, filename string, roundNumber int) {
 	img := image.NewRGBA(image.Rect(0, 0, imageWidth, imageHeight))
 
 	// Draw the background
-	for x := 0; x < imageWidth; x++ {
-		for y := 0; y < imageHeight; y++ {
+	for x := range imageWidth {
+		for y := range imageHeight {
 			img.Set(x, y, BG_COLOR)
 		}
 	}
 
 	// Draw the title
-	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "DELTA DS1 & DS2 Muziekbingo            Ronde " + strconv.Itoa(roundNumber), 40)
+	renderText(img, 20, 60, color.RGBA{0x00, 0x8c, 0xf4, 255}, 900, "The W1nner Takes It All Muziekbingo   Ronde " + strconv.Itoa(roundNumber), 40)
 
 	// Horizontal lines
 	for i := range WIDTH {
@@ -152,6 +152,7 @@ func DrawCard(card *bingo.Card, filename string, roundNumber int) {
 	}
 
 	// Save the image
+	log.Printf(filename)
 	f, err := os.Create(filename)
 	if err != nil {
 		panic(err)

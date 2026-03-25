@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/benallen-dev/bingo-generator/pkg/bingo"
 	"github.com/benallen-dev/bingo-generator/pkg/image"
@@ -36,15 +37,39 @@ func main() {
 
 	// Generate the images
 	for roundNumber, round := range rounds {
+
+
+//  ── generate winning cards ───────────────────────────────────────────────
+
+		winningDirName := fmt.Sprintf("output/round-%d-winners", roundNumber+1)
+		err := os.Mkdir(winningDirName, 0755)
+		if err != nil {
+			fmt.Println("Error creating output directory:", err)
+		}
+
+		fmt.Println("Round " + strconv.Itoa(roundNumber+1))
 		for cardNumber, card := range round.WinningCards {
-			fileName := fmt.Sprintf("output/round-%d-%02d-win-%d.png", roundNumber+1, cardNumber+1, card.WinsAt())
+			fileName := fmt.Sprintf("%s/round-%d-%02d-win-%d.png", winningDirName, roundNumber+1, cardNumber+1, card.WinsAt())
 			image.DrawCard(card, fileName, roundNumber+1)
 		}
 
+		fmt.Println("Winning cards generated")
+
+
+//  ── generate losing cards ────────────────────────────────────────────────
+
+		dirName := fmt.Sprintf("output/round-%d", roundNumber+1)
+		err = os.Mkdir(dirName, 0755)
+		if err != nil {
+			fmt.Println("Error creating output directory:", err)
+		}
+
 		for cardNumber, card := range round.BackupCards {
-			fileName := fmt.Sprintf("output/round-%d-%02d-no-win-%d.png", roundNumber+1, cardNumber+6, card.WinsAt())
+			fileName := fmt.Sprintf("%s/round-%d-%02d-no-win-%d.png", dirName, roundNumber+1, cardNumber+6, card.WinsAt())
 			image.DrawCard(card, fileName, roundNumber+1)
 		}
+
+		fmt.Println("Losing cards generated")
 	}
 
 }
